@@ -13,7 +13,7 @@ spec:
   bootstrap:
     cloudInit:
       rawCloudConfig:
-        name: vmapptier1-bootstrap-secret
+        name: vmapptier1-3-bootstrap-secret
         key: user-data
   network:
     interfaces:
@@ -28,7 +28,7 @@ spec:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: vmapptier1-bootstrap-secret
+  name: vmapptier1-3-bootstrap-secret
   namespace: vmservice
   labels:
     vm-selector: vmapptier1
