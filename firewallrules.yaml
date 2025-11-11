@@ -48,6 +48,19 @@ spec:
      - podSelector:
          matchLabels:
            app: guestbook-ui
+    destinations:
+     - vmSelector:
+         matchLabels:
+           app: vmapptier1
+     - podSelector:
+         matchLabels:
+           app: guestbook-ui
+    ports:
+     - protocol: UDP
+       port: 53
+     - protocol: TCP
+       port: 80
+       endPort: 443
     ports:
      - protocol: TCP
        port: 80
@@ -55,6 +68,13 @@ spec:
   - name: "Pods/VMs to my PODS/VMS out"
     direction : out
     action: allow
+    sources:
+     - vmSelector:
+         matchLabels:
+           app: vmapptier1
+     - podSelector:
+         matchLabels:
+           app: guestbook-ui
     destinations:
      - vmSelector:
          matchLabels:
