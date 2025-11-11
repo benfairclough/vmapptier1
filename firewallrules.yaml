@@ -18,9 +18,9 @@ spec:
      - vmSelector:
          matchLabels:
            app: vmapptier1
-     - namespaceSelector:
+     - podSelector:
          matchLabels:
-           kubernetes.io/metadata.name=vmservice: vmservice
+           app: guestbook-ui
     ports:
      - protocol: TCP
        port: 80
@@ -32,9 +32,9 @@ spec:
      - vmSelector:
          matchLabels:
            app: vmapptier1
-     - namespaceSelector:
+     - podSelector:
          matchLabels:
-           kubernetes.io/metadata.name=vmservice: vmservice
+           app: guestbook-ui
     ports:
      - protocol: UDP
        port: 53
