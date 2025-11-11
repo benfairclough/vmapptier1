@@ -15,6 +15,9 @@ spec:
     sources:
      - ipBlocks: 
        - cidr: 192.168.0.0/16
+     - vmSelector:
+       matchLabels:
+         app: vmapptier1
     ports:
      - protocol: TCP
        port: 80
@@ -23,6 +26,9 @@ spec:
     destinations:
      - ipBlocks: 
        - cidr: 192.168.0.0/16
+     - vmSelector:
+       matchLabels:
+         app: vmapptier1
     ports:
      - protocol: UDP
        port: 53
