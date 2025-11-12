@@ -54,5 +54,5 @@ spec:
        endPort: 443
 status:
   conditions:
-    status: True
+   - status: True
       
