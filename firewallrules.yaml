@@ -52,5 +52,7 @@ spec:
      - protocol: TCP
        port: 80
        endPort: 443
-
+Status:
+  conditions:
+    status: True
       
