@@ -4,51 +4,22 @@ metadata:
   name: vmapptier1-fw
   namespace: vmservice
 spec:
+#Priority and appliedTo - This ensures the place of the rule for order, 
+#Applied to ensure only ensures the defined PODs,VMs are allocated to the rule - This speeds up rule processing
   priority: 1
   appliedTo:
   - vmSelector:
       matchLabels:
         app: vmapptier1
+#Rule are an array each object in this example starts with "-" and a name definition
+# Direction - Ingress you can only add sources! - Egress you can only add destinations!
+# Actions - String - allow or drop
+# In the rules section the higher the rule in the code the higer prioirty it has
   rules:
-  - direction: in
-    action: allow
-    sources:
-     - ipBlocks: 
-       - cidr: 192.168.0.0/16
-     - vmSelector:
-         matchLabels:
-           app: vmapptier1
-     - podSelector:
-         matchLabels:
-           app: guestbook-ui
-    ports:
-     - protocol: TCP
-       port: 80
-  - direction : out
-    action: allow
-    destinations:
-     - ipBlocks: 
-       - cidr: 192.168.0.0/16
-     - vmSelector:
-         matchLabels:
-           app: vmapptier1
-     - podSelector:
-         matchLabels:
-           app: guestbook-ui
-    ports:
-     - protocol: UDP
-       port: 53
   - name: "Pods/VMs to my PODS/VMS in "
-    direction: in
+    direction: Ingress
     action: allow
     sources:
-     - vmSelector:
-         matchLabels:
-           app: vmapptier1
-     - podSelector:
-         matchLabels:
-           app: guestbook-ui
-    destinations:
      - vmSelector:
          matchLabels:
            app: vmapptier1
@@ -66,15 +37,8 @@ spec:
        port: 80
        endPort: 443
   - name: "Pods/VMs to my PODS/VMS out"
-    direction : out
+    direction : Egress
     action: allow
-    sources:
-     - vmSelector:
-         matchLabels:
-           app: vmapptier1
-     - podSelector:
-         matchLabels:
-           app: guestbook-ui
     destinations:
      - vmSelector:
          matchLabels:
@@ -88,5 +52,7 @@ spec:
      - protocol: TCP
        port: 80
        endPort: 443
+# Status of the rule
+status: True
 
       
